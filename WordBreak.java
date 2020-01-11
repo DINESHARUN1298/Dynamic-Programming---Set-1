@@ -1,9 +1,9 @@
 import java.util.*;
 public class Hello {
     
-    public int checkCondition(int arr[], String currWord) {
+    public static int checkCondition(int arr[], String word) {
         
-        for(int index = 0; index < currWord.length(); index++)
+        for(int index = 0; index < word.length(); index++)
         {
             if(arr[word.charAt(index)] == 0)
                 return 1;
@@ -34,7 +34,9 @@ public class Hello {
     for(int index = 0; index < N; index++)
     {
         currWord = sc.nextLine();
-        flag = checkCondition(arr[],currWord);
+        int temp[] = arr.clone();
+        flag = checkCondition(temp,currWord);
+    
         
         if(flag == 1)
         {
