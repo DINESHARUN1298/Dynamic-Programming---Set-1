@@ -1,0 +1,46 @@
+import java.util.*;
+import java.lang.Math;
+
+public class Hello {
+    
+    public static int lcs(char S1[], char S2[], int m, int n)
+    {
+        int LCS[][] = new int [m+1][n+1];
+        int maxResult = 0;
+        
+        for(int index = 0; index <= m; index++)
+        {
+            for(int subIndex = 0; subIndex <= n; subIndex++)
+            {
+                if(index == 0 || subIndex == 0) {
+                    LCS[index][subIndex] = 0;
+                } else if(S1[index - 1] == S2[subIndex - 1]){
+                    LCS[index][subIndex] = LCS[index - 1][subIndex - 1] + 1;
+                    maxResult = Math.max(maxResult, LCS[index][subIndex]);
+                } else {
+                    LCS[index][subIndex] = 0;
+                }
+            }
+        }
+        
+        return maxResult;
+        
+    }
+
+    public static void main(String[] args) {
+		//Your Code Here
+
+    Scanner sc = new Scanner(System.in);
+    String s1 = sc.nextLine();
+    String s2 = sc.nextLine();
+    
+    char S1[] = s1.toCharArray();
+    char S2[] = s2.toCharArray();
+    
+    int length1 = S1.length;
+    int length2 = S2.length;
+    
+    System.out.println(lcs(S1, S2, length1 ,length2));
+
+	}
+}
