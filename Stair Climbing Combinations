@@ -19,6 +19,7 @@ public class Hello {
         
         if(s == sum) {
             totalWaysPossible++;
+	    return;
         }
             
         if(s >= sum) {
