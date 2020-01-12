@@ -1,0 +1,71 @@
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Hello {
+    
+    public static int totalWaysPossible = 0;
+    
+    public static void countWays(ArrayList<Integer> numbers , int sum){
+        count_recursive(numbers, sum, new ArrayList<Integer>());
+    }
+    
+    public static void count_recursive(ArrayList<Integer> numbers, int sum, ArrayList<Integer> partial) {
+        int s = 0;
+        
+        for(int x: partial){
+            s += x;
+        }
+        
+        if(s == sum) {
+            totalWaysPossible++;
+        }
+            
+        if(s >= sum) {
+            return;
+        }
+        
+        for(int index = 0; index < numbers.size(); index++) {
+            ArrayList<Integer> remaining = new ArrayList<>();
+            
+            int n = numbers.get(index);
+            
+            for(int subIndex = index; subIndex < numbers.size(); subIndex++) {
+                remaining.add(numbers.get(subIndex));
+            }
+                
+            ArrayList<Integer> partial_rec = new ArrayList<Integer>(partial);
+                
+            partial_rec.add(n);
+            //System.out.println(partial_rec);
+            count_recursive(remaining, sum, partial_rec);
+                
+        }
+        
+    }
+
+    public static void main(String[] args) {
+		//Your Code Here
+		
+	Scanner sc = new Scanner(System.in);
+	int M, N;
+	
+	M = sc.nextInt();
+	N = sc.nextInt();
+	
+	sc.nextLine();
+	
+	ArrayList<Integer> arr = new ArrayList<>();
+	
+	for(int index = 0; index < N; index++)
+	{
+	    arr.add(sc.nextInt());
+	}
+	
+	countWays(arr, M);
+	
+	System.out.println(totalWaysPossible);
+	//System.out.println("DONNIE");
+
+	}
+}
