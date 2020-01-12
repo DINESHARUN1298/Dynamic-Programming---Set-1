@@ -1,0 +1,39 @@
+import java.util.*;
+import java.math.BigInteger;
+// Must check for specific cases
+public class Hello {
+    
+    public static BigInteger countWays(int R, int C) {
+        
+        BigInteger dp[] = new BigInteger[C];
+        dp[0] = BigInteger.ONE;
+        
+        for(int index = 1; index < C; index++)
+        {
+            dp[index] = BigInteger.ZERO;
+        }
+        
+        for(int index = 0; index < R; index++)
+        {
+            for(int subIndex = 1; subIndex < C; subIndex++)
+            {
+                dp[subIndex] = dp[subIndex].add(dp[subIndex-1]);
+            }
+        }
+        
+        return dp[C-1];
+        
+    }
+
+    public static void main(String[] args) {
+		//Your Code Here
+
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    
+    System.out.println(countWays(R, C));
+    //System.out.println("DONNIE");
+
+	}
+}
