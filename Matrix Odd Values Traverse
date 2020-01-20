@@ -1,0 +1,52 @@
+import java.util.*;
+public class Hello {
+    
+    public static long countWays(int R, int C, int matrix[][]) {
+        long [][]dp = new long[R+1][C+1];
+        
+        for(int rowIndex = 1; rowIndex <= R; rowIndex++)
+        {
+            for(int colIndex = 1; colIndex <= C; colIndex++)
+            {
+                if(rowIndex == 1 || colIndex == 1)
+                {
+                    if(matrix[rowIndex][colIndex] %2 == 1){
+                        dp[rowIndex][colIndex] = 1;
+                    } else {
+                        dp[rowIndex][colIndex] = 0;
+                    }
+                } else {
+                    if(matrix[rowIndex][colIndex] %2 == 1){
+                        dp[rowIndex][colIndex] = dp[rowIndex - 1][colIndex] + dp[rowIndex][colIndex - 1];
+                    }
+                }
+            }
+        }
+        return dp[R][C];
+    }
+
+    public static void main(String[] args) {
+		//Your Code Here
+		
+	Scanner sc = new Scanner(System.in);
+	
+	int R, C;
+	
+	R = sc.nextInt();
+	C = sc.nextInt();
+	
+	int matrix[][] = new int[101][101];
+	
+	for(int rowIndex = 1; rowIndex <= R; rowIndex++)
+	{
+	    for(int colIndex = 1; colIndex <= C; colIndex++)
+	    {
+	        matrix[rowIndex][colIndex] = sc.nextInt();  
+	    }
+	}
+	
+	System.out.println(countWays(R,C,matrix));
+	//System.out.println("DONNIE");
+
+	}
+}
