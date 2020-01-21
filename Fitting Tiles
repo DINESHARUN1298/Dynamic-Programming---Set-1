@@ -1,0 +1,29 @@
+import java.util.*;
+public class Hello {
+    
+    public static long countWays(int N) {
+        long []dp = new long[N+1];
+        
+        for(int index = 1; index <= N; index++)
+        {
+            if(index == 1 || index == 2)
+            {
+                dp[index] = index;
+            } else {
+                dp[index] = dp[index-1] + dp[index-2];
+            }
+        }
+        return dp[N];
+        
+    }
+
+    public static void main(String[] args) {
+		//Your Code Here
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    
+    System.out.println(countWays(N));
+    //System.out.println("DONNIE");
+    
+	}
+}
