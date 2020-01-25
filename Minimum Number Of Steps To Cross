@@ -1,0 +1,60 @@
+import java.util.*;
+public class Hello {
+    
+    public static int getMinJumps(int arr[], int N) {
+        int jumps[] = new int[N];
+        int index, subIndex;
+        
+        if(N == 0 || arr[0] == 0)
+            return Integer.MAX_VALUE;
+            
+        jumps[0] = 0;
+        
+        for(index = 1; index < N; index++)
+        {
+            jumps[index] = Integer.MAX_VALUE;
+            for(subIndex = 0; subIndex < index; subIndex++)
+            {
+                if(index <= subIndex + arr[subIndex] && jumps[subIndex] != Integer.MAX_VALUE)
+                {
+                    if(jumps[index] > jumps[subIndex] + 1)
+                    {
+                        jumps[index] = jumps[subIndex] + 1;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        return jumps[N-1];
+        
+    }
+
+    public static void main(String[] args) {
+		//Your Code Here
+    
+    Scanner sc = new Scanner(System.in);
+    int N, ans;
+    int arr[] = new int[1001];
+    
+    N = sc.nextInt();
+    
+    for(int index = 0; index < N; index++)
+    {
+        arr[index] = sc.nextInt();
+    }
+    
+    ans = getMinJumps(arr, N);
+    
+    if(ans == Integer.MAX_VALUE)
+    {
+        System.out.println("-1");
+    }
+    else {
+        System.out.println(ans);
+    }
+    
+    //System.out.println("DONNIE");
+    
+	}
+}
