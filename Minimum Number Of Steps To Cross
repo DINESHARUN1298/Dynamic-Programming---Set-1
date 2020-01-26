@@ -17,11 +17,12 @@ public class Hello {
             {
                 if(index <= subIndex + arr[subIndex] && jumps[subIndex] != Integer.MAX_VALUE)
                 {
-                    if(jumps[index] > jumps[subIndex] + 1)
-                    {
-                        jumps[index] = jumps[subIndex] + 1;
-                        break;
-                    }
+                    if(index == subIndex + arr[subIndex] && index == N-1) {
+                        jumps[index] = Math.min(jumps[index], jumps[subIndex] + 2);    
+                    } else {
+                    jumps[index] = Math.min(jumps[index], jumps[subIndex] + 1);
+                    break;
+                }
                 }
             }
         }
